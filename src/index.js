@@ -173,6 +173,14 @@ function unserializeItem(item: Buffer, startIndex: number, scope: Object, option
     currentIndex += 1
     return { index: currentIndex, value: container }
   }
+  if (type === 'r') {
+    // Resource
+    const valueEnd = item.indexOf(';', currentIndex)
+    const _value6 = item.toString('utf8', currentIndex, valueEnd)
+
+    currentIndex += _value6.length + 1
+    return { index: currentIndex, value: { resource: _value6 } }
+  }
   throw new SyntaxError()
 }
 
