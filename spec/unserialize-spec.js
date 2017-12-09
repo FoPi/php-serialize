@@ -86,7 +86,7 @@ describe('unserialize', function() {
     testOutput(new Parent(), SCOPE)
   })
   it('accepts serialiazable classes not available in scope when strict mode is off', function() {
-    const unserialized = unserialize('C:10:"TestParent":50:{a:2:{i:0;C:4:"Test":3:{asd}i:1;O:7:"TestTwo":0:{}}}', {}, { strict: false })
+    const unserialized = unserialize('C:10:"TestParent":50:{a:2:{i:0;C:4:"Test":3:{asd}i:1;O:7:"TestTwo":0:{}}};s:12:"TestResource";r:1', {}, { strict: false })
     expect(unserialized.constructor.name).toBe('__PHP_Incomplete_Class')
     expect(unserialized.__PHP_Incomplete_Class_Name).toBe('TestParent')
     expect(typeof unserialized.a).toBe('undefined')
